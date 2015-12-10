@@ -16,11 +16,6 @@ print(dim(trainLabels))
 # trainingData should be 60000x786,  60000 data and 784 features (28x28), tha matrix trainData has 60000 rows and 784 columns
 # trainingLabels should have 60000x1, one class label \in {0,1,...9} for each data.
 
-#n= 10
-#print(trainData[n, ])
-#print("Class label:"); print(trainLabels[n])
-#image(matrix(trainData[n, ], ncol=28, nrow=28), Rowv=28, Colv=28)
-
 # train a model
 features <- learn(tdata = trainData, tLabels = trainLabels, epsilon = 0.4)
 predictedLabels <- testModel(features, trainData)
@@ -28,7 +23,7 @@ predictedLabels <- testModel(features, trainData)
 #calculate accuracy on training data
 print(sum(predictedLabels == trainLabels)/length(trainLabels))
 
-#Recall, precision, specificity, F-measure, FDR and ROC for each class separately. Use a package for ROC.
+#Recall, precision, specificity, F-measure, FDR and ROC for each class separately.
 m = length(predictedLabels);
 for (k in 0:9) {
   pred <- matrix(0, m, 1);
@@ -60,7 +55,6 @@ testData <- testData / 255
 
 print(dim(testData))
 print(dim(testLabels))
-
 #trainingData should be 10000x786,  10000 data and 784 features (28x28), tha matrix trainData has 10000 rows and 784 columns
 #trainingLabels should have 10000x1, one class label \in {0,1,...9} for each data.
 

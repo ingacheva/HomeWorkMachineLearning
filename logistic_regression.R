@@ -1,4 +1,4 @@
-#learn and test data 
+#learn data for all classes
 learn <- function(tdata, tLabels, epsilon) {
   n = length(tdata[1, ]) + 1;
   features <- matrix(0, 10, n);
@@ -10,6 +10,7 @@ learn <- function(tdata, tLabels, epsilon) {
   return (features)
 }
 
+#learn one class 
 learnModel <- function(data, y, eps, class) {
   m = length(data[ ,1]);
   n = length(data[1, ]) + 1;
