@@ -1,10 +1,11 @@
-#learn and test data by Neural Network
+#learn data by Neural Network
 learnNet <- function(data, labels, eps){
   # only 3 layers
   L_n = 3
   n = length(data[1, ]) + 1;
   m = length(data[ ,1]);
-  k = 1
+  #number of class
+  k = 10
   n_k = n * k
   y <- matrix(data = 0, nrow = m, ncol = k)
   x <- matrix(data = 1, nrow = n_k, ncol = m)
@@ -80,6 +81,7 @@ learnNet <- function(data, labels, eps){
   return(Q)
 }
 
+#fuction for calculate g_Q(x)
 calculate_g <- function(x,Q, L_n, n) {
   g_x <- matrix(0, L_n, n)
   for (i in 1:n) {
@@ -92,6 +94,7 @@ calculate_g <- function(x,Q, L_n, n) {
   return(g_x)
 }
 
+#test the model
 testModel <- function(classifier, trainData){
   dataSize = 1
   labels <- matrix(data = 0, nrow = nData, ncol = dataSize)
