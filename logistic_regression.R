@@ -33,18 +33,17 @@ learnModel <- function(data, y, eps, class) {
   Q <- matrix(0.1, n, 1);
   g_x <- matrix(0, m, 1);
   delta <- matrix(0, n, 1);
-  Err = 1000;
-  lambda = 0.001;
+  Err = 1000; Err_old = 10000;
+  lambda = 0.00000001;
   mu = 0.000001;
   #gradient desedent
   while (Err >= eps) {
-    for (i in 1:m ) {
-      g_x[i] = 1.0 / (1.0 + exp(-sum(Q * x[i,])))
-    }
+    g_x = 1.0 / (1.0 + exp(-t(Q) %*% t(x)))
     delta <- t(x) %*% (g_x - y);
-    delta[-1] = delta[-1] - 2 * mu * lambda * Q[-1];
+    delta[-1] = delta[-1] - 2 * lambda * Q[-1];
     Q <- Q - mu * delta;
-    Err <- (1 / m) * sum(-y * log(g_x) - (1 - y) * log(1 - g_x)) + lambda * sum(crossprod(Q));
+    Err_old = Err;
+    Err <- (1 / m) * sum(-y * log(g_x) - (1 - y) * log(1 - g_x)) + lambda * sum(crossprod(Q[-1]));
     #print(Err)
   }
   return(Q)
@@ -58,11 +57,7 @@ testModel <- function(Q, data){
   g_x <- matrix(0, 10, 1);
   x <- matrix(1, m, n);
   x[,-1] <- data;
-  for (i in 1:m ) {
-    for (j in 0:9) {
-      g_x[j] = 1.0 / (1.0 + exp(-sum(Q[j, ] * x[i,])));
-    }
-    labels[i] = which.max(g_x);
-  }
+  g_x = 1.0 / (1.0 + exp(-t(Q) %*% t(x)))
+  labels[i] = which.max(g_x);
   return(labels)
 }

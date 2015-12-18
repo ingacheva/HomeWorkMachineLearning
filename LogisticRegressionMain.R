@@ -1,5 +1,5 @@
-source("C://R_home//load_data.R")
-source("C://R_home//logistic_regression.R")
+source("C://R_home//HomeWorkRepository//load_data.R")
+source("C://R_home//HomeWorkRepository//logistic_regression.R")
 library(PerfMeas)
 # This sciprt file contains a frame for learning handwritten digitals from the MNIST dataset
 
@@ -17,7 +17,7 @@ print(dim(trainLabels))
 # trainingLabels should have 60000x1, one class label \in {0,1,...9} for each data.
 
 # train a model
-features <- learn(tdata = trainData, tLabels = trainLabels, epsilon = 0.4)
+features <- learn(tdata = trainData, tLabels = trainLabels, epsilon = 0.2)
 predictedLabels <- testModel(features, trainData)
 
 #calculate accuracy on training data

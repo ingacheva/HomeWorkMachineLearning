@@ -23,7 +23,6 @@ loadMNISTData <- function(dataFilename, labelFilename){
   y <- readBin(dataFileIn, integer(), n = 1, size = 4, endian = "big")
   
   dataSize = x*y
-  
   data <- matrix(data = 0, nrow = nData, ncol = dataSize)
   
   for (i in 1:nData){
